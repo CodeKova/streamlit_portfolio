@@ -25,7 +25,7 @@ for i in range(0,30):
 #########################################
 X_cols = ['Año', 'Semana', 'Mes', 'Dia_mes', 'Dia_semana']
 y_cols = ['valor_dolar_oficial', 'valor_merval', 'valor_circulacion_monetaria', 'valor_base_monetaria', 'valor_efec_ent_financieras']
-model = pickle.load(open(r'/Dolar_Blue/Modelos/Dolar Blue/Modelo 1/model.pkl','rb'))
+model = pickle.load(open(r'Dolar_Blue/Modelos/Dolar Blue/Modelo 1/model.pkl','rb'))
 X = df[X_cols].values
 y_pred = model.predict(X)
 df_X = pd.DataFrame(X,columns=X_cols)
@@ -38,7 +38,7 @@ df_modelo1 = pd.merge(df_X, df_ypred, left_index=True, right_index=True)
 #########################################
 X_cols = ['Año', 'Semana', 'Mes', 'Dia_mes', 'Dia_semana']
 y_cols = ['valor_dolar_blue']
-model = pickle.load(open(r'/Dolar_Blue/Modelos/Dolar Blue/Modelo 2/model.pkl','rb'))
+model = pickle.load(open(r'Dolar_Blue/Modelos/Dolar Blue/Modelo 2/model.pkl','rb'))
 X = df[X_cols].values
 y_pred = model.predict(X)
 df_X = pd.DataFrame(X,columns=X_cols)
@@ -51,7 +51,7 @@ df_modelo2 = pd.merge(df_X, df_ypred, left_index=True, right_index=True)
 #########################################
 X_cols = ['valor_dolar_oficial', 'valor_merval', 'valor_circulacion_monetaria', 'valor_base_monetaria', 'valor_efec_ent_financieras']
 y_cols = ['valor_dolar_blue']
-model = pickle.load(open(r'/Dolar_Blue/Modelos/Dolar Blue/Modelo 3/model.pkl','rb'))
+model = pickle.load(open(r'Dolar_Blue/Modelos/Dolar Blue/Modelo 3/model.pkl','rb'))
 X = df_modelo1[X_cols].values
 y_pred = model.predict(X)
 df_X = pd.DataFrame(X,columns=X_cols)
@@ -72,7 +72,7 @@ predicciones['pred_promedio'] = (predicciones['pred2_blue']+predicciones['pred1_
 predicciones['pred_promedio'] = predicciones['pred_promedio']-4
 predicciones['Fecha'] = predicciones['Año'].astype(str)+'-'+predicciones['Mes'].astype(str)+'-'+predicciones['Dia_mes'].astype(str)
 predicciones = predicciones[['Fecha','pred1_blue','pred2_blue','pred_promedio']].rename(columns={'pred1_blue':'Dolar Blue Minimo','pred2_blue':'Dolar Blue Maximo','pred_promedio':'Dolar Blue Esperado'})
-predicciones.to_csv('/Dolar_Blue/predicciones_{}.csv'.format(today.strftime('%Y_%m_%d')),index=False)
+predicciones.to_csv('Dolar_Blue/predicciones_{}.csv'.format(today.strftime('%Y_%m_%d')),index=False)
 #########################################
 #Chart
 #########################################
@@ -322,7 +322,7 @@ datos = datos[cols]
             st.write("""
             ##### DataFrame resultante""")
 
-            datos_df = pd.read_csv(r'/Dolar_Blue/datos.csv')
+            datos_df = pd.read_csv(r'Dolar_Blue/datos.csv')
             datos_index = st.slider(
                 '',
                 0,len(datos_df),(len(datos_df)//2,len(datos_df))
@@ -679,7 +679,7 @@ predicciones['pred_promedio'] = (predicciones['pred2_blue']+predicciones['pred1_
 
             st.write('#### Ejemplo del DataFrame resultante:')
 
-            st.dataframe(pd.read_csv('/Dolar_Blue/predicciones_2022_11_04.csv'))
+            st.dataframe(pd.read_csv('Dolar_Blue/predicciones_2022_11_04.csv'))
 
             st.write('En la seccion grafico pueden verse los valores de manera interactiva.')
 
