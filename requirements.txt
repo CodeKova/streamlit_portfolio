@@ -4,3 +4,5 @@ pandas==1.4.4
 numpy==1.23.3
 streamlit==1.14.0
 streamlit-option-menu==0.3.2
+pickleshare==0.7.5
+pickle
