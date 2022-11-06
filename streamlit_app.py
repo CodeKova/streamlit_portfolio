@@ -25,7 +25,7 @@ for i in range(0,30):
 #########################################
 X_cols = ['Año', 'Semana', 'Mes', 'Dia_mes', 'Dia_semana']
 y_cols = ['valor_dolar_oficial', 'valor_merval', 'valor_circulacion_monetaria', 'valor_base_monetaria', 'valor_efec_ent_financieras']
-model = load(r'Dolar_Blue\Modelos\Dolar Blue\Modelo 1\model.joblib')
+model = load(r'Dolar_Blue/Modelos/Dolar Blue/Modelo 1/model.joblib')
 X = df[X_cols].values
 y_pred = model.predict(X)
 df_X = pd.DataFrame(X,columns=X_cols)
@@ -38,7 +38,7 @@ df_modelo1 = pd.merge(df_X, df_ypred, left_index=True, right_index=True)
 #########################################
 X_cols = ['Año', 'Semana', 'Mes', 'Dia_mes', 'Dia_semana']
 y_cols = ['valor_dolar_blue']
-model = load(r'Dolar_Blue\Modelos\Dolar Blue\Modelo 2\model.joblib')
+model = load(r'Dolar_Blue/Modelos/Dolar Blue/Modelo 2/model.joblib')
 X = df[X_cols].values
 y_pred = model.predict(X)
 df_X = pd.DataFrame(X,columns=X_cols)
@@ -51,7 +51,7 @@ df_modelo2 = pd.merge(df_X, df_ypred, left_index=True, right_index=True)
 #########################################
 X_cols = ['valor_dolar_oficial', 'valor_merval', 'valor_circulacion_monetaria', 'valor_base_monetaria', 'valor_efec_ent_financieras']
 y_cols = ['valor_dolar_blue']
-model = load(r'Dolar_Blue\Modelos\Dolar Blue\Modelo 3\model.joblib')
+model = load(r'Dolar_Blue/Modelos/Dolar Blue/Modelo 3/model.joblib')
 X = df_modelo1[X_cols].values
 y_pred = model.predict(X)
 df_X = pd.DataFrame(X,columns=X_cols)
@@ -72,7 +72,7 @@ predicciones['pred_promedio'] = (predicciones['pred2_blue']+predicciones['pred1_
 predicciones['pred_promedio'] = predicciones['pred_promedio']-4
 predicciones['Fecha'] = predicciones['Año'].astype(str)+'-'+predicciones['Mes'].astype(str)+'-'+predicciones['Dia_mes'].astype(str)
 predicciones = predicciones[['Fecha','pred1_blue','pred2_blue','pred_promedio']].rename(columns={'pred1_blue':'Dolar Blue Minimo','pred2_blue':'Dolar Blue Maximo','pred_promedio':'Dolar Blue Esperado'})
-predicciones.to_csv('Dolar_Blue\predicciones_{}.csv'.format(today.strftime('%Y_%m_%d')),index=False)
+predicciones.to_csv('Dolar_Blue/predicciones_{}.csv'.format(today.strftime('%Y_%m_%d')),index=False)
 #########################################
 #Chart
 #########################################
@@ -170,7 +170,7 @@ if selected == 'Proyectos':
             - #### Se realiza una serie de consultas a la API del Banco Central de la Republica Argentina para obtener datos financieros, se identifica cuales de esos datos son los mas linealmente predecibles.
             """)
 
-            st.image(r'_src\assets\Diagrama_1_DB.png')
+            st.image(r'_src/assets/Diagrama_1_DB.png')
 
             st.write('')
             st.write('')
@@ -188,7 +188,7 @@ if selected == 'Proyectos':
             - #### El tercer modelo recibira los valores del primer modelo y devolvera la predicion del dolar blue, con los pesos ajustados para predecir por arriba y de manera mas volatil
             - #### Con los dos valores que se obtuvo del Dolar Blue se obtendra el valor esperado en base a un promedio y un ajuste.
             """)
-            st.image(r'_src\assets\Diagrama_2_DB.png')
+            st.image(r'_src/assets/Diagrama_2_DB.png')
 
 #########################################
 # Blue - Codigo
@@ -322,7 +322,7 @@ datos = datos[cols]
             st.write("""
             ##### DataFrame resultante""")
 
-            datos_df = pd.read_csv(r'Dolar_Blue\datos.csv')
+            datos_df = pd.read_csv(r'Dolar_Blue/datos.csv')
             datos_index = st.slider(
                 '',
                 0,len(datos_df),(len(datos_df)//2,len(datos_df))
@@ -416,7 +416,7 @@ model = MultiOutputRegressor(Ridge(random_state=50))
 model = make_pipeline(StandardScaler(),model)
 model.fit(X,y)
 y_pred = model.predict(X)
-dump(model, r'Modelos\Dolar Blue\Modelo 1\model.joblib')
+dump(model, r'Modelos/Dolar Blue/Modelo 1/model.joblib')
             """)
 
             st.write('##### Cramos un DataFrame con el Primer Modelo.')
@@ -468,7 +468,7 @@ Coeficiente de Determinacion:  0.8959
 model = make_pipeline(StandardScaler(),model)
 model.fit(X,y)
 y_pred = model.predict(X)
-dump(model, r'Modelos\Dolar Blue\Modelo 2\model.joblib')
+dump(model, r'Modelos/Dolar Blue/Modelo 2/model.joblib')
             """)
 
             st.write('##### Creamos un DataFrame para el segundo modelo.')
@@ -653,7 +653,7 @@ for iter_out in range(1000):
                 pesos_list[key].append(pesos[key])
 
         if(first_bool and last_bool and R2_bool and RMSE_bool):
-            dump(model, r'Modelos\Dolar Blue\Modelo 3\model.joblib')
+            dump(model, r'Modelos/Dolar Blue/Modelo 3/model.joblib')
             print('==========================Balanceado====================')
             print('Error Cuadrado Medio: ', MSE.round(4))
             print('Raiz del Error Cuadrado Medio: ', RMSE.round(4))
@@ -679,7 +679,7 @@ predicciones['pred_promedio'] = (predicciones['pred2_blue']+predicciones['pred1_
 
             st.write('#### Ejemplo del DataFrame resultante:')
 
-            st.dataframe(pd.read_csv('Dolar_Blue\predicciones_2022_11_04.csv'))
+            st.dataframe(pd.read_csv('Dolar_Blue/predicciones_2022_11_04.csv'))
 
             st.write('En la seccion grafico pueden verse los valores de manera interactiva.')
 
