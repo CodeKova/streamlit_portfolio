@@ -3,7 +3,7 @@ import altair as alt
 import pandas as pd 
 from datetime import datetime
 import datetime as dt
-import joblib
+import pickle
 import streamlit as st
 import streamlit.components.v1 as components
 from streamlit_option_menu import option_menu
@@ -25,7 +25,7 @@ for i in range(0,30):
 #########################################
 X_cols = ['Año', 'Semana', 'Mes', 'Dia_mes', 'Dia_semana']
 y_cols = ['valor_dolar_oficial', 'valor_merval', 'valor_circulacion_monetaria', 'valor_base_monetaria', 'valor_efec_ent_financieras']
-model = joblib.load(r'Dolar_Blue/Modelos/Dolar Blue/Modelo 1/model.joblib')
+model = pickle.load(open(r'Dolar_Blue/Modelos/Dolar Blue/Modelo 1/model.pkl','rb'))
 X = df[X_cols].values
 y_pred = model.predict(X)
 df_X = pd.DataFrame(X,columns=X_cols)
@@ -38,7 +38,7 @@ df_modelo1 = pd.merge(df_X, df_ypred, left_index=True, right_index=True)
 #########################################
 X_cols = ['Año', 'Semana', 'Mes', 'Dia_mes', 'Dia_semana']
 y_cols = ['valor_dolar_blue']
-model = joblib.load(r'Dolar_Blue/Modelos/Dolar Blue/Modelo 2/model.joblib')
+model = pickle.load(open(r'Dolar_Blue/Modelos/Dolar Blue/Modelo 2/model.pkl','rb'))
 X = df[X_cols].values
 y_pred = model.predict(X)
 df_X = pd.DataFrame(X,columns=X_cols)
@@ -51,7 +51,7 @@ df_modelo2 = pd.merge(df_X, df_ypred, left_index=True, right_index=True)
 #########################################
 X_cols = ['valor_dolar_oficial', 'valor_merval', 'valor_circulacion_monetaria', 'valor_base_monetaria', 'valor_efec_ent_financieras']
 y_cols = ['valor_dolar_blue']
-model = joblib.load(r'Dolar_Blue/Modelos/Dolar Blue/Modelo 3/model.joblib')
+model = pickle.load(open(r'Dolar_Blue/Modelos/Dolar Blue/Modelo 3/model.pkl','rb'))
 X = df_modelo1[X_cols].values
 y_pred = model.predict(X)
 df_X = pd.DataFrame(X,columns=X_cols)
