@@ -158,7 +158,7 @@ if selected == 'Proyectos':
         if selected_blue == "Inicio":
             st.markdown("""
             # Introduccion
-            #### Este es un proyecto con fines practicos para poner en practica las habilidades adquiridas en el bootcamp de Henry y cursos de Platzi realizados en torno al Machine Learning y Feature Engineering.
+            #### Este es un proyecto con fines didacticos para poner en practica las habilidades adquiridas en el bootcamp de Henry y cursos de Platzi realizados en torno al Machine Learning y Feature Engineering.
 
             # Propuesta
             - #### Obtener datos financieros de la API del BCRA.
@@ -183,7 +183,7 @@ if selected == 'Proyectos':
             
             ### Puesta en Produccion de los Modelos
             - #### Luego de tratados los datos e identificados los mejores valores de los que se puede obtener una prediccion lineal, se entrenan los modelos.
-            - #### El primer modelo recibira la fecha y devolvera una prediccion de los valores financieron seleccionados, a excepcion del dolar blue.
+            - #### El primer modelo recibira la fecha y devolvera una prediccion de los valores financieros seleccionados, a excepcion del dolar blue.
             - #### El segundo modelo recibira la fecha y devolvera la prediccion del dolar blue, mas estable y por debajo de la realidad.
             - #### El tercer modelo recibira los valores del primer modelo y devolvera la predicion del dolar blue, con los pesos ajustados para predecir por arriba y de manera mas volatil
             - #### Con los dos valores que se obtuvo del Dolar Blue se obtendra el valor esperado en base a un promedio y un ajuste.
@@ -419,7 +419,7 @@ y_pred = model.predict(X)
 dump(model, r'Modelos/Dolar Blue/Modelo 1/model.joblib')
             """)
 
-            st.write('##### Cramos un DataFrame con el Primer Modelo.')
+            st.write('##### Creamos un DataFrame con el Primer Modelo.')
 
             st.code("""
             df_X = pd.DataFrame(X,columns=X_cols)
