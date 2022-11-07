@@ -698,6 +698,9 @@ predicciones['pred_promedio'] = (predicciones['pred2_blue']+predicciones['pred1_
             )
     if selected_proyecto == 'Auto-ETL - Data Engineering':
         st.write('# En construccion')
+        st.write("""
+            ## [GitHub](https://github.com/CodeKova/Data_Engineering-Proyecto_Individual-Henry).
+            """)
 if selected == 'Contacto':
 
     components.html("""<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
